@@ -1,0 +1,25 @@
+# Ignorer les secrets / variables d’environnement
+.env
+*.env
+*.secret
+*.key
+
+# Node modules / Python / dépendances
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfvars
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
