@@ -8,6 +8,11 @@ import pybreaker
 import random
 import time
 
+
+user_input = "2 + 2"
+result = eval(user_input)
+print(result)
+
 def get_db_connection():
     conn = sqlite3.connect('utilisateurs.db')
     conn.row_factory = sqlite3.Row
