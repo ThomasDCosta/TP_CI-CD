@@ -13,6 +13,8 @@ user_input = "2 + 2"
 result = eval(user_input)
 print(result)
 
+DB_PASSWORD = "Password123!"
+
 def get_db_connection():
     conn = sqlite3.connect('utilisateurs.db')
     conn.row_factory = sqlite3.Row
