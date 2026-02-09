@@ -23,4 +23,4 @@ jobs:
 
       # 3️⃣ Exécuter le scan SAST sur tout le dépôt
       - name: Run Semgrep
-        run: semgrep --config auto ./
+        run: semgrep --config auto --error ./
