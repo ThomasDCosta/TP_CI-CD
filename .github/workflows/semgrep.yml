@@ -1,0 +1,26 @@
+name: SAST Code Analysis
+
+# Déclenche le workflow sur les mêmes conditions que Gitleaks
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  semgrep:
+    name: Static Application Security Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Récupère le code du dépôt
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Installer Semgrep
+      - name: Install Semgrep
+        run: pip install semgrep
+
+      # 3️⃣ Exécuter le scan SAST sur tout le dépôt
+      - name: Run Semgrep
+        run: semgrep --config auto ./
