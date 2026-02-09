@@ -8,9 +8,9 @@ DC=docker compose
 URL=http://127.0.0.1:5000
 #//////////////////////////////////////////////////////////
  
+lancement: down build up open
+rapport-erreur: rapport-json conversion affichage-rapport
  
-lancement: down build scan up open
-rapport-erreur: trivy rapport-json conversion affichage-rapport
 down:
     $(DC) down -v
  
@@ -26,17 +26,15 @@ open:
  
  
 # génère un rapport html de chaque vulnérabilitées sur les 4 images docker
-trivy:
-    @trivy image --format json -o report-auth.json devops-auth:latest
-    @trivy image --format json -o report-article.json devops-article:latest
-    @trivy image --format json -o report-banque.json devops-banque:latest
-    @trivy image --format json -o report-panier.json devops-panier:latest
  
 rapport-json:
+    @mkdir -p rapports_json
     @for img in devops-banque:latest devops-auth:latest devops-panier:latest devops-article:latest; do \
         file_name=$$(echo $$img | tr ':/' '--').json; \
-        echo "Scanning $$img → $$file_name"; \
-        trivy image --format json -o "$$file_name" "$$img"; \
+        output_path="rapports_json/$$file_name"; \
+        echo "Scanning $$img → $$output_path"; \
+        [ -f "$$output_path" ] && rm "$$output_path"; \
+        trivy image --format json -o "$$output_path" "$$img"; \
     done
  
 conversion:
