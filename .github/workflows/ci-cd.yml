@@ -1,0 +1,39 @@
+name: CI/CD Microservices
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  gitleaks:
+    name: Secret scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+  build:
+    needs: gitleaks  
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [ article_service, auth_service, banque_service, lecteur_service ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image for ${{ matrix.service }}
+        run: |
+          docker build -t myorg/${{ matrix.service }}:latest ./${{ matrix.service }}
