@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Catalogue de films</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      max-width: 900px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    /* Carte film */
+    .film {
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 3px solid transparent;
+    }
+
+    .film:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .film img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .film span {
+      display: block;
+      padding: 10px;
+      background: #f7f7f7;
+      font-weight: 500;
+      color: #333;
+    }
+
+    /* Checkbox cachée */
+    .film input[type="checkbox"] {
+      display: none;
+    }
+
+    /* Film sélectionné */
+    .film input[type="checkbox"]:checked + img {
+      outline: 4px solid #0077cc;
+    }
+
+    button {
+      grid-column: 1 / -1;
+      margin-top: 30px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      justify-self: center;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bienvenue, {{ username }}.</h1>
+
+    <form action="http://localhost:5002/panier" method="post">
+  <input type="hidden" name="username" value="{{ username }}">
+  <input type="hidden" name="token" value="{{ token }}">
+
+  <label class="film">
+    <input type="radio" name="film" value="Inception" required>
+    <img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" alt="Inception">
+    <span>Inception</span>
+  </label>
+
+  <label class="film">
+    <input type="radio" name="film" value="Interstellar">
+    <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" alt="Interstellar">
+    <span>Interstellar</span>
+  </label>
+
+  <label class="film">
+    <input type="radio" name="film" value="Matrix">
+    <img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg" alt="Matrix">
+    <span>Matrix</span>
+  </label>
+
+  <label class="film">
+    <input type="radio" name="film" value="Gladiator">
+    <img src="https://image.tmdb.org/t/p/w500/ehGpN04mLJIrSnxcZBMvHeG0eDc.jpg" alt="Gladiator">
+    <span>Gladiator</span>
+  </label>
+
+  <label class="film">
+    <input type="radio" name="film" value="Le Seigneur des Anneaux">
+    <img src="https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg" alt="Le Seigneur des Anneaux">
+    <span>Le Seigneur des Anneaux</span>
+  </label>
+
+  <button type="submit">Voir ce film</button>
+</form>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sélection d'articles</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 40px 50px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 1.6rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 1rem;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    label:hover {
+      color: #0077cc;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      accent-color: #0077cc;
+    }
+
+    button {
+      align-self: center;
+      margin-top: 20px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenue, {{ username }}.</h1>
+    <form action="http://localhost:5003/panier" method="post">
+  <input type="hidden" name="username" value="{{ username }}">
+  <input type="hidden" name="token" value="{{ token }}">
+  <!-- ✅ On ajoute ici le token JWT -->
+
+  <label><input type="checkbox" name="article" value="Article 1"> Article 1</label>
+  <label><input type="checkbox" name="article" value="Article 2"> Article 2</label>
+  <label><input type="checkbox" name="article" value="Article 3"> Article 3</label>
+  <label><input type="checkbox" name="article" value="Article 4"> Article 4</label>
+  <label><input type="checkbox" name="article" value="Article 5"> Article 5</label>
+  <label><input type="checkbox" name="article" value="Article 6"> Article 6</label>
+  <label><input type="checkbox" name="article" value="Article 7"> Article 7</label>
+  <label><input type="checkbox" name="article" value="Article 8"> Article 8</label>
+
+  <button type="submit">Envoyer</button>
+</form>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Paiement</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #eaf1f8, #cfd9e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 50px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      background-color: #f6f9fc;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Paiement pour {{ nom }}</h2>
+    <p>{{ resultat }}</p>
+
+    <!-- Bouton pour retourner au catalogue -->
+    <form method="GET" action="http://localhost:5001/article_page">
+      <input type="hidden" name="token" value="{{ token }}">
+      <input type="hidden" name="username" value="{{ nom }}">
+      <button type="submit">Aller au catalogue</button>
+    </form>
+  </div>
+</body>
+</html>

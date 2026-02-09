@@ -1,0 +1,52 @@
+services:
+  # Service Auth
+  auth:
+    build: ./auth_service
+    container_name: auth-service
+    environment:
+      - SERVICE_NAME=auth
+      - ARTICLE_SERVICE_URL=http://article-service:5001/article_page
+    ports:
+      - "5000:5000"
+    networks:
+      - my_project_network
+    depends_on:
+      - article
+
+  # Service Article
+  article:
+    build: ./article_service
+    container_name: article-service
+    environment:
+      - SERVICE_NAME=article
+    ports:
+      - "5001:5001"
+    networks:
+      - my_project_network
+
+  # Service Banque
+  banque:
+    build: ./banque_service
+    container_name: banque-service
+    environment:
+      - SERVICE_NAME=banque
+    ports:
+      - "5003:5003"
+    networks:
+      - my_project_network
+
+  # Service Panier / Gateway front
+  panier:
+    build: ./gateway_front
+    container_name: panier-service
+    environment:
+      - SERVICE_NAME=panier
+    ports:
+      - "5002:5002"
+    networks:
+      - my_project_network
+
+# Réseau dédié pour le projet
+networks:
+  my_project_network:
+    driver: bridge
