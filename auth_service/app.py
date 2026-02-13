@@ -8,17 +8,6 @@ import pybreaker
 import random
 import time
 
-
-# Genere une erreur pour SAST
-user_input = "2 + 2"
-result = eval(user_input)
-print(result)
-
-DB_PASSWORD = "Password123!"
-
-
-
-
 def get_db_connection():
     conn = sqlite3.connect('utilisateurs.db')
     conn.row_factory = sqlite3.Row
@@ -94,6 +83,20 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/health', methods=['GET'])
+def health():
+    try:
+        with open("utilisateurs.db", "rb"):
+            pass
+        db_status = "OK"
+    except Exception as e:
+        db_status = f"ERROR ({e})"
+    
+    return jsonify({
+        "service": "auth_service",
+        "status": db_status
+    })
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
+ 
