@@ -8,6 +8,8 @@ services:
       - ARTICLE_SERVICE_URL=http://article-service:5001/article_page
     ports:
       - "5000:5000"
+    volumes:
+      - auth_db:/app/data
     networks:
       - my_project_network
     depends_on:
@@ -35,18 +37,25 @@ services:
     networks:
       - my_project_network
 
-  # Service Panier / Gateway front
-  panier:
-    build: ./gateway_front
-    container_name: panier-service
+  # Service Lecteur / Gateway front
+  lecteur:
+    build: ./lecteur_service
+    container_name: lecteur-service
     environment:
-      - SERVICE_NAME=panier
+      - SERVICE_NAME=lecteur
     ports:
       - "5002:5002"
     networks:
       - my_project_network
-
-# Réseau dédié pour le projet
+    depends_on:    # pour le lancer en dernier
+    - auth
+    - article
+    - banque
+      
 networks:
   my_project_network:
     driver: bridge
+
+volumes:
+  auth_db:
+

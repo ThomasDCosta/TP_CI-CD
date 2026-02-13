@@ -1,0 +1,8 @@
+192.168.65.1 - - [10/Feb/2026 09:55:46] "POST /banque HTTP/1.1" 200 -
+192.168.65.1 - - [10/Feb/2026 09:55:48] "GET /banque?token=ieruhtfoieruhfoeirtufh_19f2bcbdb4e561c9&username=ieruhtfoieruhfoeirtufh HTTP/1.1" 200 -
+192.168.65.1 - - [10/Feb/2026 09:55:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+192.168.65.1 - - [10/Feb/2026 09:55:48] code 400, message Bad request syntax ('\x16\x03\x01\x05÷\x01\x00\x05ó\x03\x03{nÒõ4\x13&\x97[,ÞÄ»\x02')
+192.168.65.1 - - [10/Feb/2026 09:55:48] "[31m[1m\x16\x03\x01\x05÷\x01\x00\x05ó\x03\x03{nÒõ4\x13&\x97[,ÞÄ»\x02[0m" 400 -
+192.168.65.1 - - [10/Feb/2026 09:55:48] code 400, message Bad request version ('£§ç\x9eú:sÔ/:¿+#\x8eÝC\x7fåÚXµÉg¦ï\xads\x84\x14Ù\x00,')
+192.168.65.1 - - [10/Feb/2026 09:55:48] "[31m[1m\x16\x03\x01\x05ù\x01\x00\x05õ\x03\x03¡L×\x96ss¿GÿB\x15z\x8c8\x81°û¨\x8a;T|·AïðÆó\x82hØ\x94 l\x1d£§ç\x9eú:sÔ/:¿+#\x8eÝC\x7fåÚXµÉg¦ï­s\x84\x14Ù\x00,[0m" 400 -
+192.168.65.1 - - [10/Feb/2026 09:55:48] "POST /banque HTTP/1.1" 200 -

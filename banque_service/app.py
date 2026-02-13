@@ -27,5 +27,18 @@ def banque():
 
     return render_template('banque.html', nom=nom, resultat=resultat, token=token)
     
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5003)
+from flask import Flask, jsonify
+
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({
+        "service": "banque_service",
+        "status": "OK"
+    })
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5003, debug=True)
+
+
+ 
